@@ -41,7 +41,8 @@ def main():
 
         while not (done or truncated):
             if USE_RANDOM:
-                action = env.action_space.sample()  # random action
+                action = 1 if obs[2] > 0 else 0
+                # action = env.action_space.sample()  # random action
             else:
                 action = torch.tensor([obs], dtype=torch.float32).to(device)
                 with torch.no_grad():
