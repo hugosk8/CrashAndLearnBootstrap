@@ -21,6 +21,7 @@ def main():
     action_dim = 2
     hid_size = 256
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    num_episodes = 30
 
     # load model
     model = None
@@ -32,7 +33,7 @@ def main():
     env = gym.make("CartPole-v1", render_mode="human")
 
     rewards = []
-    for ep in range(5):
+    for ep in range(num_episodes):
         obs, _ = env.reset()
         done = False
         truncated = False
@@ -58,7 +59,7 @@ def main():
         print(f"Episode {ep + 1} is over: reward={ep_reward:.1f}  steps={step_idx}")
 
     env.close()
-    print(f"\nAverage reward over 5 episodes: {sum(rewards)/len(rewards):.2f}")
+    print(f"\nAverage reward over {num_episodes} episodes: {sum(rewards)/len(rewards):.2f}")
 
 
 if __name__ == "__main__":
